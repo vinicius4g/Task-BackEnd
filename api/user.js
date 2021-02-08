@@ -14,7 +14,11 @@ module.exports = app => {
             const password = hash
 
             app.db('users')
-                .insert({ name: req.body.name, email: req.body.email, password})
+                .insert({ 
+                    name: req.body.name, 
+                    email: req.body.email.toLowerCase(), 
+                    password
+                })
                 .then(_ => res.status(204).send()) //sucesso
                 .catch(err => res.status(400).json(err)) //erro 
         })  
